@@ -13,9 +13,19 @@ namespace App.Services
             _repository = repository;
         }
 
-        public void SendMensagem(AppMensagem mensagem)
+        public void CadastrarConta(AppMensagem mensagem)
         {
-            _repository.SendMensagem(mensagem);
+            _repository.SendMensagem(mensagem, "queue_kafka");
+        }
+
+        public void DepositarValor(AppMensagemTransaction mensagem)
+        {
+            _repository.PutMensagem(mensagem, "queue_depositar");
+        }
+
+        public void SacarValor(AppMensagemTransaction mensagem)
+        {
+            _repository.PutMensagem(mensagem, "queue_sacar");
         }
     }
 }

@@ -4,6 +4,8 @@ namespace App.Services.Interfaces
 {
     public interface IAppMensagemService
     {
-        void SendMensagem(AppMensagem mensagem);
+        void CadastrarConta(AppMensagem mensagem);
+        void DepositarValor(AppMensagemTransaction mensagem);
+        void SacarValor(AppMensagemTransaction mensagem);
     }
 }

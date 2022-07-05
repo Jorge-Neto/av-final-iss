@@ -1,11 +1,10 @@
 namespace App.Entities
 {
-    public class AppMensagem
+    public class AppMensagemTransaction
     {
-        public String? nome { get; set; }
-        public String? cpf { get; set; }
         public String? agencia { get; set; }
         public String? conta { get; set; }
+        public String? valor { get; set; }
 
     }
 }
