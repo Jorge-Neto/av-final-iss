@@ -25,7 +25,6 @@ namespace App.Repositories
                 {
                     Console.WriteLine($"Delivery failed: {e.Error.Reason}");
                 }
-
             }
         }
     }
