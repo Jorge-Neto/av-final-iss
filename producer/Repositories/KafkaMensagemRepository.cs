@@ -18,7 +18,7 @@ namespace App.Repositories
                 string json = JsonSerializer.Serialize(mensagem);
                 try
                 {
-                    var dr = await producer.ProduceAsync(queue, new Message<string, string>{Value = json});
+                    var dr = await producer.ProduceAsync(queue, new Message<string, string> { Key = "cadastrar", Value = json });
                     Console.WriteLine($"Delivered '{dr.Value}' to '{dr.TopicPartitionOffset}'");
                 }
                 catch (ProduceException<Null, string> e)
@@ -38,7 +38,17 @@ namespace App.Repositories
                 string json = JsonSerializer.Serialize(mensagem);
                 try
                 {
-                    var dr = await producer.ProduceAsync(queue, new Message<string, string>{Value = json});
+                    string key = "";
+                    if (queue == "queue_depositar")
+                    {
+                        key = "depositar";
+                    }
+                    else
+                    {
+                        key = "sacar";
+                    }
+
+                    var dr = await producer.ProduceAsync(queue, new Message<string, string> { Key = key, Value = json });
                     Console.WriteLine($"Delivered '{dr.Value}' to '{dr.TopicPartitionOffset}'");
                 }
                 catch (ProduceException<Null, string> e)
